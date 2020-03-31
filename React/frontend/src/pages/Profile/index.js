@@ -21,15 +21,23 @@ export default function Profile(){
     })}, [ongId]);
 
     async function handleDeleteIncident(id){
-        try {
-            await api.delete(`incidents/${id}`, {headers:{
-            Authorization: ongId,}
-        })
 
-        setIncidents(incidents.filter(incident => incident.id != id ));
-        } catch (error) {
-            alert("Erro ao deletar, tente denovo");
+        const resp = window.confirm("Deseja realmente excluir esse caso?");
+        
+        if (resp == true){
+            try {
+                await api.delete(`incidents/${id}`, {headers:{
+                Authorization: ongId,}
+            })
+    
+            setIncidents(incidents.filter(incident => incident.id != id ));
+            
+            } catch (error) {
+                alert("Erro ao deletar, tente denovo");
+            }
+
         }
+       
 
     }
 
@@ -45,7 +53,7 @@ export default function Profile(){
             <span>Bem Vinda, {ongName}</span>
 
             <Link className="button" to="/incidents/new">Cadastrar novo caso</Link>
-            <button onClick={handleLogout} type="button">
+            <button type="button">
                 <FiPower size={18} color="#E02041"/>
             </button>
             </header>

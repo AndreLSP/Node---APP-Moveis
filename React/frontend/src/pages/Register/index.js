@@ -29,7 +29,7 @@ import LogoImg from '../../assets/logo.svg';
 
         try {
             const response = await api.post('ongs', data);
-            alert(`Seu ID de acesso: ${response.data.id}`);
+            window.alert(`Cadastro feito com sucesso!! Anote Seu ID:  ${response.data.id}`);
             history.push('./');
         } catch (error) {
             alert('Erro do cadastro, tente novamente');
